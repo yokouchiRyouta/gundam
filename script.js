@@ -1,6 +1,8 @@
-var CENTER_WINDOW_WIDTH = window.innerWidth / 2;
-var CENTER_WINDOW_HEIGHT = window.innerHeight / 2;
+var CENTER_WINDOW_WIDTH = 1050;
+var CENTER_WINDOW_HEIGHT = 600;
 function setup(){
+  console.log(windowWidth);
+  console.log(windowHeight);
   //キャンバスを作成
   createCanvas(windowWidth, windowHeight);
   //背景色
@@ -9,14 +11,14 @@ function setup(){
   stroke(255,255,0);
   strokeWeight(10);
   noFill();
-  rect(0.02 * windowWidth, 0.02 * windowHeight, 0.96 * windowWidth, 0.96 * windowHeight);
-  //オブジェクトの色
-  fill(0,255,0);
-  strokeWeight(0);
-  //キャンバスの中心に直径100pxの丸を描画
-  ellipse(width/2,height/2,100);
+  rect(widthPosition(-1025) , heightPosition(-575), widthPosition(1025), heightPosition(575));
+  // //オブジェクトの色
+  // fill(0,255,0);
+  // strokeWeight(0);
+  // //キャンバスの中心に直径100pxの丸を描画
+  // ellipse(width/2,height/2,100);
 
-  zafut_mark(0);
+  zaftMark(0);
 
 
   x = width / 2;
@@ -24,27 +26,46 @@ function setup(){
   d = 100;
 }
 
-function zafut_mark(x) {
-  var mark_top = {width: CENTER_WINDOW_WIDTH - 270, height: CENTER_WINDOW_HEIGHT + 270};
-  var mark_bottom = {width: CENTER_WINDOW_WIDTH + 270, height: CENTER_WINDOW_HEIGHT - 270};
+function zaftMark(x) {
+  var mark_left_top = {width: CENTER_WINDOW_WIDTH - 305, height: CENTER_WINDOW_HEIGHT - 270};
+  var mark_right_top = {width: CENTER_WINDOW_WIDTH - 305, height: CENTER_WINDOW_HEIGHT + 270};
+  var mark_left_bottom = {width: CENTER_WINDOW_WIDTH + 305, height: CENTER_WINDOW_HEIGHT - 270};
+  var mark_right_bottom = {width: CENTER_WINDOW_WIDTH + 305, height: CENTER_WINDOW_HEIGHT + 270};
   // ザフトのマーク
   strokeCap(SQUARE);
   strokeWeight(35);
   stroke(255,0,0,);
-  line(mark_top.width, mark_top.height, mark_bottom.width, mark_bottom.height);
+  line(mark_right_top.width, mark_right_top.height, mark_left_bottom.width, mark_left_bottom.height);
 
-  fill(255,0,0);
   noFill()
   strokeWeight(80);
-  arc(windowWidth * 0.5, windowHeight * 0.8, 1500, 1500, PI * 1.4, PI *1.6, OPEN);
-}
-function draw() {
-  aaa()
+  arc(CENTER_WINDOW_WIDTH, CENTER_WINDOW_HEIGHT * 1.6, 1000, 1560, PI * 1.36, PI * 1.65, OPEN);
+  arc(CENTER_WINDOW_WIDTH, CENTER_WINDOW_HEIGHT * 0.4, 1000, 1560, PI * 0.36, PI * 0.65, OPEN);
 
+  fill(255,0,0);
+  strokeWeight(5);
+  // 左上
+  triangle(mark_left_top.width + 30, mark_left_top.height - 73, CENTER_WINDOW_WIDTH - 100, CENTER_WINDOW_HEIGHT - 150, mark_left_top.width - 40, mark_left_top.height - 5)
+  // 右下
+  triangle(mark_right_bottom.width - 30, mark_right_bottom.height + 73, CENTER_WINDOW_WIDTH + 100, CENTER_WINDOW_HEIGHT + 150, mark_right_bottom.width + 45, mark_right_bottom.height)
 }
-function aaa() {
-  fill(200, 80, 100); //塗りつぶしを青色に指定
-  noStroke();
-  ellipse(x, y, d, d);
-  x = x + 1;
+// function draw() {
+//   aaa()
+//
+// }
+// function aaa() {
+//   fill(200, 80, 100); //塗りつぶしを青色に指定
+//   noStroke();
+//   ellipse(x, y, d, d);
+//   x = x + 1;
+// }
+
+// 中心からの横幅指定
+function widthPosition(width) {
+  return CENTER_WINDOW_WIDTH + width;
+}
+
+// 中心からの横幅指定
+function heightPosition(height) {
+  return CENTER_WINDOW_HEIGHT + height;
 }
