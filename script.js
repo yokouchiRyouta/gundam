@@ -2,7 +2,6 @@ var WIDTH_SIZE = window.innerWidth
 var HEIGHT_SIZE = window.innerHeight
 var CENTER_WINDOW_WIDTH = WIDTH_SIZE / 2;
 var CENTER_WINDOW_HEIGHT = HEIGHT_SIZE / 2;
-// window.resizeTo(WIDTH_SIZE, HEIGHT_SIZE);
 var MOBILE_SUITE_NEO_OPERATION_SYSTEM = new Array('M', 'O', 'B', 'I', 'L', 'E',
                                                   ' ', 'S', 'U', 'I', 'T', 'E',
                                                   ' ', 'N', 'E', 'O',
@@ -53,9 +52,7 @@ var LOG = new Array(LOG1, LOG2, LOG3, LOG4, LOG5, LOG6, LOG7);
 var SHUWASHUWA = new Array();
 
 function setup(){
-
-  console.log(windowWidth);
-  console.log(windowHeight);
+  $("body").css("margin",0);
   //キャンバスを作成
   createCanvas(windowWidth, windowHeight);
   console.log(windowWidth, windowHeight);
@@ -79,7 +76,6 @@ function setup(){
   zoom = 0.5
   
   introFrag = true
-  
 
   width = 0;
   height = 0;
@@ -307,9 +303,6 @@ function draw() {
       displayCubes(displayCount - 550);
       displayCounts(displayCount - 550);
     }
-    
-
-    //aaa();
     displayCount = displayCount + 1;
   }
 }
@@ -319,25 +312,6 @@ function outLine() {
   strokeWeight(5);
   noFill();
   rect(widthPosition(-690) , heightPosition(-393), widthPosition(1382) , heightPosition(788));
-}
-
-function aaa() {
-  //background(0,0,64);
-  zaftMark(0, 0);
-  if(frag) {
-    width = width + 10;
-  } else {
-    width = width - 10;
-  }
-  if(width >= 1000){
-    frag = false
-  }
-  if(width <= 0){
-    frag = true
-  }
-  // height = height + 1;
-  console.log(width);
-  console.log(height);
 }
 
 function displayCountRange(start, end, displayCount){
@@ -394,7 +368,7 @@ function displayConsole(width, height, widthLength, heightLength, additionalWidt
   rect(width + 900, height + 4, 100, 8);
   rect(width + 1070, height + 4, 30, 8);
   rect(width + 1110, height + 4, 30, 8);
-  fill('rgba(100,149,237, 0.6)');
+  fill('rgba(102,112,235, 0.7)');
   rect(width + 6, height + 24, (widthLength + additionalWidth) - 12, (heightLength + additionalHeight) - 28);
 }
 
