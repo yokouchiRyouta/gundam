@@ -84,7 +84,7 @@ function setup(){
 
 function zaftMark(width, height) {
   //translate(CENTER_WINDOW_WIDTH, CENTER_WINDOW_HEIGHT);
-  scale(0.45);
+  scale(0.42);
   var markLeftTop = {width: widthPosition(-305), height: heightPosition(-270)};
   var markRightTop = {width: widthPosition(-305), height: heightPosition(270)};
   var markLeftBottom = {width: widthPosition(305), height: heightPosition(-270)};
@@ -145,7 +145,7 @@ function zaftMark(width, height) {
   text("Treaty", 330 + width, 110 + height)
   
   rotate((PI / 180) * 5);
-  scale(0.65/0.45);
+  scale(0.65/0.42);
 }
 
 function draw() {
