@@ -145,7 +145,7 @@ function zaftMark(width, height) {
   text("Treaty", 330 + width, 110 + height)
   
   rotate((PI / 180) * 5);
-  scale(0.7/0.45);
+  scale(0.65/0.45);
 }
 
 function draw() {
