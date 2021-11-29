@@ -40,12 +40,12 @@ var GUNDAM_ALL = new Array(ENERATION, NSUBDUED, UCLEAR, RIVE, SSAULT, ODULE)
 var GUNDAM_COMPLEX1 = 'G.U.N.D.A.M  C'
 var GUNDAM_COMPLEX2 = 'omplex'
 
-var LOG1 = "aaaaa  aaaaaaaa  aaa aa aaaa  aaaaaa aaaa  aaaa"
-var LOG2 = "bbbbbb  bbbbbbbbbb  bbbbb  bbb  bbbbb  bb"
-var LOG3 = "ccccc  cccccccccc  ccccccccc  cccccc"
-var LOG4 = "dddd  dd  dddd  dddddd  dddddddd  dddddd  dddddd"
-var LOG5 = "eeee  eeeeeeeee   eeeeeee eeeee   eeeeeee e"
-var LOG6 = "ffffffffffffffffff    fffff"
+var LOG1 = "Equipped with the Hyper Dutorion engine used"
+var LOG2 = "of the same generation."
+var LOG3 = "ultra-compact nuclear reactor"
+var LOG4 = "It is a substitute that has both an ultra-compact"
+var LOG5 = "reactor that is smaller and has higher output"
+var LOG6 = "nuclear engine and a dutorion beam transmission"
 var LOG7 = ""
 var LOG = new Array(LOG1, LOG2, LOG3, LOG4, LOG5, LOG6, LOG7);
 
@@ -153,28 +153,61 @@ function draw() {
   textFont("Sawarabi Mincho");
   textAlign(LEFT);
   background(0,0,64);
-  displayShuwaShuwa();
+  //displayShuwaShuwa();
   if(introFrag) {
-    zaftMark(0,0);
-    if(displayCount > 100) {
+    //zaftMark(0,0);
+    if(displayCountRange(31, 35, displayCount)) {
+      fill('rgba(211,211,211, 0.8)');
+      strokeWeight(0);
+      rect(-300, -50, 600, 100)
+    } else if(displayCountRange(35, 36, displayCount)) {
+      fill('rgba(211,211,211, 0.8)');
+      strokeWeight(0);
+      rect(-550, -50, 1100, 100)
+    } else if(displayCountRange(36, 80, displayCount)) {
+      fill('rgba(255,255,255, 1.0)');
+      strokeWeight(0);
+      rect(-600, -10, 1200, 20)
+    } else if(displayCountRange(75, 85, displayCount)) {
+      scale((0.2 + 0.0433333 * (displayCount-75))/0.65);
+      strokeWeight(0);
+      displayShuwaShuwa();
+      zaftMark(0,0);
+      scale(0.65/(0.2 + 0.0433333 * (displayCount-75)));
+      outLine(-690, 0 + (-39.3 * (displayCount-75)), 1382, 0 + (78.6 * (displayCount-75)));
+      fill('rgba(211,211,211, 0.2)');
+      stroke('rgba(211,211,211, 0.2)');
+      strokeWeight(0);
+      rect(-800, -200 + (-24 * (displayCount-75)), 1600, 400 + (48 * (displayCount-75)))
+    } else if(displayCountRange(85, 100, displayCount)) {
+      displayShuwaShuwa();
+      zaftMark(0,0);
+      outLine(-690, -393, 1382, 788);
+    }
+    if(displayCount > 97) {
       introFrag = false
       displayCount = 0
     }
     displayCount = displayCount + 1
   } else {
+    displayShuwaShuwa();
     // ZAFTのマーク
     if(displayCountRange(0, 50, displayCount)) {
       zaftMark(0,0);
+      outLine(-690, -393, 1382, 788);
     } else if(displayCountRange(50, 65, displayCount)) {
       zaftMark(0, (50 - displayCount) * 9);
+      outLine(-690, -393, 1382, 788);
     } else if(displayCountRange(65, 170, displayCount)) {
       zaftMark(0, -120);
+      outLine(-690, -393, 1382, 788);
     } else if(displayCountRange(170, 175, displayCount)) {
       zaftMark(0, -120 + ((displayCount - 170) * 19));
+      outLine(-690, -393, 1382, 788);
     } else if(displayCountRange(175, 50000, displayCount)) {
       zaftMark(0, -25);
+      outLine(-690, -393, 1382, 788);
     }
-    outLine();
     strokeWeight(2);
 
     // MOBILE SUITE NEO OPERATION SYSTEMの文字
@@ -307,11 +340,11 @@ function draw() {
   }
 }
 
-function outLine() {
+function outLine(width, height, additionalWidth, additionalHeight) {
   stroke(255,255,0);
   strokeWeight(5);
   noFill();
-  rect(widthPosition(-690) , heightPosition(-393), widthPosition(1382) , heightPosition(788));
+  rect(widthPosition(width) , heightPosition(height), widthPosition(additionalWidth) , heightPosition(additionalHeight));
 }
 
 function displayCountRange(start, end, displayCount){
@@ -539,7 +572,7 @@ function displayGadges(displayCount) {
   strokeWeight(1);
   stroke(255,255,255);
   text("CENTRAL  CONNECTION  CIRCUIT", -113, -120);
-  text("RATE  OF  ", -113, 10);
+  text("RATE  OF  ASSAULT  COMPLETE", -113, 10);
   text("REACTOR  CORE  OPENED", -113, 140);
 }
 
@@ -686,7 +719,6 @@ function displayCube(width, height) {
   quad(cubePosition2.width, cubePosition2.height, cubePosition3.width, cubePosition3.height, cubePosition4.width, cubePosition4.height, width, height);
   quad(cubePosition6.width, cubePosition6.height, width, height, cubePosition4.width, cubePosition4.height, cubePosition5.width, cubePosition5.height);
 }
-
 
 //ザフトマークの後ろのふわふわは生存カウントみたいなの作ってそれが減っていくようにし、その間弧を飲まし続けるってのhどうか
 
